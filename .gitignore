@@ -1,4 +1,20 @@
 .classpath
+  <target name="compile"  depends="resolve-dependencies" description="Compile.">
+      <echo>Compiling</echo>
+    <mkdir dir="${build.dir}"/>
+    <javac classpathref="lib.path.id" srcdir="${src.dir}" destdir="${build.dir}" optimize="${optimize}" source="${src.java.version}" debug="on" target="${target.java.version}" includeAntRuntime="${includeAntRuntime}" deprecation="${deprecation}" encoding="${encoding}">
+      <include name="**/*.java"/>
+      <include name="**/*.properties"/>
+      <classpath>
+        <pathelement location="classes"/>
+        <dirset dir="${build.dir}">
+          <include name="**/classes"/>
+        </dirset>
+      </classpath>
+
+    </javac>
+  </target>
+
 .project
 .settings/
 *\.sw[po]
